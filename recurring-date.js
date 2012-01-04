@@ -132,15 +132,18 @@ RecurringDate.prototype.generate = function (max) {
         }
 
         while (!end_condition_reached(dates, curr)) {
+
             // scan through the checked days
-            _(this.days).each(function (d) {
+            for (var i in this.days) {
+                var d = this.days[i];
+
                 if (curr.getDay() < d) curr.moveToDayOfWeek(d);
 
-                if (curr <= this.start) return;
-                if (end_condition_reached(dates, curr)) return;
+                if (curr <= this.start) continue;
+                if (end_condition_reached(dates, curr)) continue;
 
                 dates.push(curr.clone());
-            }.bind(this));
+            }
 
             // rewind back to sunday
             if (!curr.is().sunday()) curr.last().sunday();
