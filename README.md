@@ -1,3 +1,11 @@
+NOTE:
+=========
+
+I wanted a version of this script without the Protype dependency, so I forked it.
+
+The original can be found here: https://github.com/mooman/recurring_dates
+
+
 JavaScript library to generate recurring dates.
 ===============================================
 
@@ -9,7 +17,7 @@ Every month on the last Sunday starting on 02/10/09 until 03/30/10
 This library will generate a list of dates for those patterns.
 
 Please see demo here:   
-http://mooman.github.com/recurring_dates/demo.html
+http://evlapix.github.com/recurring-date/demo.html
 
 
 REQUIREMENTS
@@ -18,14 +26,10 @@ REQUIREMENTS
 Datejs - http://www.datejs.com/   
 (Distributed with this is the SVN version from 03/29/2010. Please visit their site also.)
 
-Prototype - http://www.prototypejs.org/   
-(Mainly for the Class.create and Array#each. A future release will free this dependency)
-
-
 USAGE
 -----
 
-    var r = new Recurrence(pattern);
+    var r = new RecurringDate(pattern);
     alert(r.describe());
     dates = r.generate();
     if (r.contains('03/28/10')) alert('in pattern!');
@@ -34,7 +38,7 @@ USAGE
 API
 ---
 
-    Class Recurrence (pattern [, date_format])
+    Class RecurringDate (pattern [, date_format])
 
 where pattern is a JSON object with the following options:
 
@@ -95,10 +99,7 @@ Optional argument limit puts an upper limit on how many dates to generate
 TODO
 ----
 
-- Remove Prototype dependency
-  + use something else other than Class.create
-  + replace Array.each with for loops
-- Indefinite ending date
+- Indefinite ending date (seems to be working if occurences == 0)
 - Throwaway date generation (not store in array, but just output it)
 
 
