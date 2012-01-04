@@ -1,7 +1,7 @@
 NOTE:
 =========
 
-I wanted a version of this script without the Protype dependency, so I forked it.
+I wanted a version of this script without the Prototype dependency, so I forked it.
 
 The original can be found here: https://github.com/mooman/recurring_dates
 
