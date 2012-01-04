@@ -1,56 +1,79 @@
 <html>
   <head>
     <title>Recurring Date Demo</title>
-    <script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/prototype/1.6.1.0/prototype.js'></script>
+    <script type='text/javascript' src='jquery-1.7.1.min.js'></script>
     <script type='text/javascript' src='date.js'></script>
-    <script type='text/javascript' src='recurrence.js'></script>
+    <script type='text/javascript' src='underscore-1.2.3.min.js'></script>
+    <script type='text/javascript' src='recurring-date.js'></script>
 
     <script type='text/javascript'>
       function generate_recurrence () {
         var pattern = {};
 
         // gather pattern
-        ['start', 'every', 'unit', 'end_condition', 'until', 'rfor', 'nth', 'occurrence_of'].each(function(k) {
-          pattern[k] = $(k).value;
+        _(['start', 'every', 'unit', 'end_condition', 'until', 'rfor', 'nth', 'occurrence_of']).each(function(k) {
+          pattern[k] = $('#' + k).val();
         });
 
+        pattern.days = [];
+
         // gather selected days
-        pattern.days = $$('input.week_days').collect(function(d) {
-          if (d.checked) return d.value;
-          return null;
-        }).compact();
+        $('input.week_days').map(function(i, e) {
+          if (e.checked) {
+            pattern.days.push(parseInt(e.value, 10));
+          }
+        });
+
+        $('#output').val('Input: \n');
+
+        _(pattern).each(function(e, i) {
+          $('#output').val($('#output').val() + '\t' + i + ': ' + e + "\n" )
+        });
+
+        $('#output').val($('#output').val() + '\n');
 
         try {
-          var r = new Recurrence(pattern);
-          var dates = r.generate((this.value == '') ? undefined : this.value);
+          var r = new RecurringDate(pattern);
+          var dates = r.generate(($(this).value == '') ? undefined : this.value);
         } catch (e) {
-          $('output').value = e.message;
+          $('#output').val(e.message);
           return;
         }
 
-        $('output').value = "long:\n" + r.describe() + "\n\n";
+        $('#output').val( $('#output').val() + "r.describe():\n\t" + r.describe() + "\n\n");
+
+        $('#output').val( $('#output').val() + 'r.generate():\n' );
 
         // compact description. next version.
-        // $('output').value += "short:\n" + r.describe(true) + "\n\n";
+        // $('#output').val( $('#output').val() + "short:\n" + r.describe(true) + "\n\n");
 
-        $('output').value += dates.collect(function(d) { 
-          return d.toString('ddd MM/dd/yyyy'); 
-        }).join("\n");
+        // Port it over once I can get a dates value
+        /*$('#output').value += dates.collect(function(d) {
+          return d.toString('ddd MM/dd/yyyy');
+        }).join("\n");*/
+
+        var dateList = _(dates).reduce(function(memo, d) {
+          return memo + '\t' + d.toString('ddd MM/dd/yyyy') + "\n";
+        }, '');
+
+        $('#output').val( $('#output').val() + dateList);
       }
 
-      document.observe('dom:loaded', function ( ) {
-        $('end_condition').observe('change', function () {
-          $$('#for_span, #until_span').invoke('hide');
-          $(this.value + '_span').show();
+      $(document).ready(function ( ) {
+        $('#end_condition').change(function () {
+          $('#for_span, #until_span').hide();
+          $('#' + this.value + '_span').show();
         });
 
-        $('unit').observe('change', function () {
-          $$('#week_span, #month_span').invoke('hide');
-          if (this.value == 'w') $('week_span').show();
-          if (this.value == 'm') $('month_span').show();
+        $('#unit').change(function () {
+          $('#week_span, #month_span').hide();
+          if (this.value == 'w') $('#week_span').show();
+          if (this.value == 'm') $('#month_span').show();
         });
-        
-        $$('button').invoke('observe', 'click', generate_recurrence);
+
+        $('button').click(generate_recurrence);
+
+        generate_recurrence();
       });
     </script>
   </head>
@@ -101,7 +124,7 @@
     <select id='end_condition'><option>for</option><option>until</option></select>
     <span id='for_span'>for <input id='rfor' type='text' value='10' /> occurences</span>
     <span id='until_span' style='display:none'>until <input id='until' type='text' value='12/1/10' /></span>
-    
+
     <br/>
 
     <button>Generate all</button>
