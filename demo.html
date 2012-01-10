@@ -2,7 +2,6 @@
   <head>
     <title>Recurring Date Demo</title>
     <script type='text/javascript' src='jquery-1.7.1.min.js'></script>
-    <script type='text/javascript' src='date.js'></script>
     <script type='text/javascript' src='underscore-1.2.3.min.js'></script>
     <script type='text/javascript' src='recurring-date.js'></script>
 
@@ -56,7 +55,11 @@
           return memo + '\t' + d.toString('ddd MM/dd/yyyy') + "\n";
         }, '');
 
-        $('#output').val( $('#output').val() + dateList);
+        $('#output').val( $('#output').val() + dateList + "\n");
+		
+		
+		$('#output').val( $('#output').val() + 'includes today:\n' );
+		$('#output').val( $('#output').val() + r.contains(Date.now()) );
       }
 
       $(document).ready(function ( ) {
@@ -120,7 +123,7 @@
 
     <br/>
 
-    from <input id='start' type='text' value='06/08/10' />
+    from <input id='start' type='text' value='1/1/2012' />
     <select id='end_condition'><option>for</option><option>until</option></select>
     <span id='for_span'>for <input id='rfor' type='text' value='10' /> occurences</span>
     <span id='until_span' style='display:none'>until <input id='until' type='text' value='12/1/10' /></span>
