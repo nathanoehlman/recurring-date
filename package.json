@@ -1,6 +1,6 @@
 {
   "name": "recurring-date",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Generate a list of dates that meet a given schedule",
   "main": "index.js",
   "scripts": {
@@ -21,6 +21,10 @@
     "moment": "~2.5.0",
     "underscore": "~1.5.2"
   },
+  "contributors": [
+    "Matt Grayson (https://github.com/mattgrayson)",
+    "Rachot Moragraan (https://github.com/mooman)"
+  ],
   "devDependencies": {
     "expect.js": "~0.2.0"
   }
