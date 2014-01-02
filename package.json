@@ -1,0 +1,27 @@
+{
+  "name": "recurring-date",
+  "version": "0.0.1",
+  "description": "Generate a list of dates that meet a given schedule",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --reporter spec"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/nathanoehlman/recurring-date.git"
+  },
+  "keywords": [
+    "momentjs",
+    "recurring",
+    "dates"
+  ],
+  "author": "Nathan Oehlman",
+  "license": "MIT",
+  "dependencies": {
+    "moment": "~2.5.0",
+    "underscore": "~1.5.2"
+  },
+  "devDependencies": {
+    "expect.js": "~0.2.0"
+  }
+}

@@ -1,3 +1,8 @@
+New Note:
+=========
+
+I've further forked this to convert to a Node.js friendly library (will still work in the browser using the Browserified version in the dist directory)
+
 NOTE:
 =========
 
