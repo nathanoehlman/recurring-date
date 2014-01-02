@@ -65,6 +65,17 @@ describe('by days with', function () {
 		test_dates(pattern, expected_dates, done);
 	});
 
+	it('time information', function(done) {
+		var pattern = _.extend(base_pattern, { start: '02/21/2010 7:00 PM', until: '03/07/2010 7:00 PM' });
+		var expected_dates = [
+		  '02/21/2010 7:00 PM', '02/22/2010 7:00 PM', '02/23/2010 7:00 PM', '02/24/2010 7:00 PM', '02/25/2010 7:00 PM', 
+		  '02/26/2010 7:00 PM', '02/27/2010 7:00 PM', '02/28/2010 7:00 PM', '03/01/2010 7:00 PM', '03/02/2010 7:00 PM', 
+		  '03/03/2010 7:00 PM', '03/04/2010 7:00 PM', '03/05/2010 7:00 PM', '03/06/2010 7:00 PM', '03/07/2010 7:00 PM'
+		];
+
+		test_dates(base_pattern, expected_dates, done);
+	});
+
 }); // describe by days
 
 describe('by weeks with', function () {
