@@ -53,7 +53,7 @@ function RecurringDate (pattern, date_format) {
     this.nth = parseInt(pattern.nth);
     this.days = (pattern.days) ? pattern.days.sort() : [];
 
-    this.date_format = date_format || 'MM/dd/yyyy';
+    this.date_format = date_format || 'MM/DD/YYYY';
 }
 
 // tries to describe the pattern in plain english
@@ -87,8 +87,8 @@ RecurringDate.prototype.describe = function () {
 
     t.push('starting on', this.start.toString(this.date_format));
 
-    if (this.end_condition == 'until') {
-        t.push('until', this.until.toString(this.date_format));
+    if (this.end_condition == 'until') {        
+        t.push('until', moment(this.until).format(this.date_format));
     } else if (this.end_condition == 'for') {
         t.push('for', this.rfor, 'occurrences');
     }
