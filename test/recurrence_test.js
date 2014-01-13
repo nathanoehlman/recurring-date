@@ -111,3 +111,41 @@ describe('by weeks with', function () {
 	});
 
 }); // describe by weeks
+
+describe('with timezone offset', function() {
+
+	it('should be able to generate with a timezone offset', function(done) {
+		var start = moment('13-01-2014 06:30 AM +10:00', 'DD-MM-YYYY hh:mm a Z'),
+			params = {
+				start: start.toDate(),
+				until: '03/21/2014',
+				every: '1', 
+				unit: 'w',
+				end_condition: 'until',
+				days: [1],
+				timezone: '-0500'
+			},
+			r = new Recurrence(params),
+			results = r.generate(),
+			expected = [
+				1389558600000,
+				1389645000000,
+				1390249800000,
+				1390854600000,
+				1391459400000,
+				1392064200000,
+				1392669000000,
+				1393273800000,
+				1393878600000,
+				1394483400000,
+				1395088200000
+			];
+
+		for (var i = 0; i < results.length; i++) {
+			if (results[i] != expected[i]) {
+				return done('Unexpected time');
+			}
+		}
+		return done();
+	});	
+});
