@@ -18,7 +18,7 @@
   "author": "Nathan Oehlman",
   "license": "MIT",
   "dependencies": {
-    "moment": "~2.5.0",
+    "moment": "~2.14.1",
     "underscore": "~1.5.2"
   },
   "contributors": [
@@ -26,6 +26,7 @@
     "Rachot Moragraan (https://github.com/mooman)"
   ],
   "devDependencies": {
-    "expect.js": "~0.2.0"
+    "expect.js": "~0.2.0",
+    "mocha": "^3.0.2"
   }
 }

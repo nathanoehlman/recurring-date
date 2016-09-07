@@ -1,9 +1,18 @@
 <html>
   <head>
     <title>Recurring Date Demo</title>
-    <script type='text/javascript' src='jquery-1.7.1.min.js'></script>
-    <script type='text/javascript' src='underscore-1.2.3.min.js'></script>
-    <script type='text/javascript' src='recurring-date.js'></script>
+    <script type='text/javascript' src='https://code.jquery.com/jquery-1.12.4.min.js'></script>
+    <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js'></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment.min.js"></script>
+    <script>
+      // override require JS for use in browser.
+      function require(libname) {
+        if (libname === 'moment') {
+          return moment;
+        }
+      }
+    </script>
+    <script type='text/javascript' src='lib/recurring.js'></script>
 
     <script type='text/javascript'>
       function generate_recurrence () {
