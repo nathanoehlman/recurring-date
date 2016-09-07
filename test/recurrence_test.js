@@ -149,3 +149,36 @@ describe('with timezone offset', function() {
 		return done();
 	});	
 });
+
+describe('by months with', function () {
+
+	var pattern = {
+		start: '1/6/2016',
+		until: '12/31/2016',
+		every: 1,
+		unit: 'm',
+		end_condition: 'until',
+		nth: 1,
+		occurrence_of: 3
+	};
+
+	it('specific ending date and once a month on first wednesday', function (done) {
+		var expected_dates = ["01/06/2016", "02/03/2016", "03/02/2016", "04/06/2016", "05/04/2016", "06/01/2016", "07/06/2016", "08/03/2016", "09/07/2016", "10/05/2016", "11/02/2016", "12/07/2016"];
+		test_dates(pattern, expected_dates, done);
+	});
+
+	it('number of occurrences and once a month on first wednesday', function (done) {
+		var expected_dates = ["01/06/2016", "02/03/2016", "03/02/2016", "04/06/2016", "05/04/2016"];
+		pattern.end_condition = 'for';
+		pattern.rfor = 5;
+		test_dates(pattern, expected_dates, done);
+	});
+
+	// definitely needs more work
+	it('#describe', function (done) {
+		var r = new Recurrence(pattern);
+		if (!r.describe().match(/Every month on the first Wednesday starting on Wed Jan 06 2016/)) return done('Invalid description');
+		return done();
+	});
+
+}); // describe by weeks
