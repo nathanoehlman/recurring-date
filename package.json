@@ -18,7 +18,7 @@
   "author": "Nathan Oehlman",
   "license": "MIT",
   "dependencies": {
-    "moment": "~2.5.0",
+    "moment": "~2.14.1",
     "underscore": "~1.5.2"
   },
   "contributors": [

@@ -177,7 +177,7 @@ describe('by months with', function () {
 	// definitely needs more work
 	it('#describe', function (done) {
 		var r = new Recurrence(pattern);
-		if (!r.describe().match(/Every month on the first Wednesday starting on Wed Jan 06 2016/)) return done('Invalid description');
+		if (!r.describe().match(/Every month on the first Wednesday starting on Jan 6, 2016/)) return done('Invalid description');
 		return done();
 	});
 
